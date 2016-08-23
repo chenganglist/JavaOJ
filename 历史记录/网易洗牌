@@ -1,0 +1,67 @@
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int groups = sc.nextInt();
+		ArrayList<int[]> result = new ArrayList<int[]>();
+		for(int i=0;i<groups;i++)
+		{
+			int num  = 2*sc.nextInt();
+			int xiPaiTimes = sc.nextInt();
+			int[] a = new int[num];
+			for(int j=0;j<num;j++)
+			{
+				a[j] = sc.nextInt();
+			}
+			xiPaiNTimes(a,xiPaiTimes);
+			result.add(Arrays.copyOfRange(a,0,num));
+		}
+		
+		Iterator<int[]> it = result.iterator();
+		while(it.hasNext())
+		{
+			int[] a = (int[]) it.next();
+			for(int i=0;i<a.length-1;i++)
+			{
+				System.out.print(a[i]+" ");
+			}
+			System.out.println(a[a.length-1]);
+		}
+		
+
+        sc.close();
+	}
+	
+	public static void xiPaiNTimes(int a[],int k)
+	{
+		for(int i=0;i<k;i++)
+		{
+			singleXiPai(a);
+		}
+	}
+	
+	public static void  singleXiPai(int a[])
+	{
+		int halfLen = a.length/2;
+		int[] left = Arrays.copyOfRange(a,0,halfLen);
+		int[] right = Arrays.copyOfRange(a, halfLen, a.length);
+		int l=left.length-1;
+		int r=right.length-1;
+		for(int i=a.length-1;i>=0;i--)
+		{
+			if(i%2 == 0)
+			{
+				if(l>=0)
+				a[i] = left[l];
+				l--;
+			}else
+			{
+				if(r>=0)
+				a[i] = right[r];
+				r--;
+			}
+		}
+	}
+}
