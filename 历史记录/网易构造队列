@@ -41,7 +41,7 @@ public class Main{
 }
 
 
-法二：双端队列
+法二：双端队列,可使用ArrayDeque和LinkedList实现
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
