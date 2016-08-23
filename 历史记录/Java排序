@@ -1,3 +1,4 @@
+//list使用collections方法升序排序
 import java.util.*;
 
 public class Main {
@@ -14,3 +15,6 @@ public class Main {
     	    sc.close();
     	}
 }
+//arrays使用Arrays.sort方法升序排序
+int[] a = new int[num];
+Arrays.sort(a);
