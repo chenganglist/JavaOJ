@@ -1,0 +1,54 @@
+import java.util.*;
+public class Main{
+    public static boolean isLen(String[] strings){
+        int length=strings[0].length();
+        for(int i=1;i<strings.length;i++){
+            if(length<=strings[i].length()){
+                length=strings[i].length();
+            }
+            else{
+                return false;//不是根据长度排的
+            }
+        }
+        return true;
+    }
+    public static boolean abc(String[] strings){
+        ArrayList<String> list=new ArrayList<>();
+        for (int i = 0; i < strings.length; i++) {
+            list.add(strings[i]);
+        }
+        Collections.sort(list);
+        String[] strings2=new String[strings.length];
+        for (int i = 0; i < strings2.length; i++) {
+            strings2[i]=list.get(i);
+        }
+        for (int i = 0; i < strings2.length; i++) {
+            if (strings[i]!=strings2[i]) {
+                return  false;//不是根据字母顺序
+            }
+        }
+        return true;//根据字母顺序
+    }
+    public static void main(String args[]){
+        Scanner s=new Scanner(System.in);
+        while(s.hasNext()){
+            int n=s.nextInt();
+            String[] strings=new String[n];
+            for(int i=0;i<n;i++){
+                strings[i]=s.next();
+            }
+            if(isLen(strings)&abc(strings)){
+                System.out.println("both");
+            }
+            else if(isLen(strings)==false&abc(strings)==true){
+                System.out.println("lexicographically");
+            }
+            else if(isLen(strings)==true&abc(strings)==false){
+                System.out.println("lengths");
+            }
+            else{
+                System.out.println("none");
+            }
+        }
+    }
+}

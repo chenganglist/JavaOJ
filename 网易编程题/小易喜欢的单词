@@ -1,0 +1,38 @@
+import java.util.*;
+import  java.lang.*;
+import  java.math.*;
+import java.text.*;
+
+public class Main {
+    public static String fun(String str){
+        HashMap<Character,Integer> mp1= new HashMap();
+        HashMap<Character,Integer> mp2= new HashMap();
+        char[] ch=str.toCharArray();
+        for(int i=0;i<str.length();++i){
+            if(i>0&&ch[i]==ch[i-1]) return "Dislikes";
+            if(ch[i]<'A'||ch[i]>'Z')
+                return "Dislikes";
+            if(!mp1.containsKey(ch[i]))
+                mp1.put(ch[i],i);
+            else{
+                Iterator iter=mp2.keySet().iterator();
+                while(iter.hasNext()){
+                    Object key = iter.next();
+                    int val = mp2.get(key);
+                    if(mp1.get(key)<mp1.get(ch[i])&&(val>mp1.get(ch[i]))){
+                        return "Dislikes";
+                    }
+                }
+                mp2.put(ch[i],i);
+            }
+        }
+        return "Likes";
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            String str=sc.nextLine();
+            System.out.println(fun(str));
+        }
+    }
+}

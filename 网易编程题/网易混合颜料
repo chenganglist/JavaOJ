@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+/**
+ * Created by Genge on 2016-08-18.
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int n = scanner.nextInt();
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int i =0;i<n;i++) {
+                list.add(scanner.nextInt());
+            }
+            int minColor = getMinColor(list);
+            System.out.println(minColor);
+        }
+        scanner.close();
+    }
+
+    private static int getMinColor(ArrayList<Integer> list) {
+        Collections.sort(list);
+        int result = 0;
+        int endValue = list.size()-1;
+        int preEndValue = endValue - 1;
+        while (list.size() > 2) {
+            if (getHighPosition(list.get(endValue)) == getHighPosition(list.get(preEndValue))) {
+                int temp = list.get(endValue) ^ list.get(preEndValue);
+                if (!list.contains(temp)) {
+                    list.add(temp);
+                    endValue++;
+                    preEndValue++;
+                    Collections.sort(list);
+                }
+            } else {
+                result++;
+            }
+            list.remove(list.size() - 1);
+            endValue = preEndValue;
+            preEndValue--;
+        }
+        return list.size()+result;
+    }
+    //求该数最高位是第几位
+    public static int getHighPosition(int a){
+        int count = 0;
+        while (a>0){
+            a >>= 1;
+            count++;
+        }
+        return count;
+    }
+}
