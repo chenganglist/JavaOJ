@@ -1,3 +1,4 @@
+//最长公共子序列--不要求子序列连续
 import java.util.Scanner;
 
 public class Main {
