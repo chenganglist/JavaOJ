@@ -1,3 +1,7 @@
+LinkedHashMap按输入有序
+HashMap无序
+TreeMap按键值自动排序
+
 import java.util.*;
 import java.util.Map.Entry;
 
