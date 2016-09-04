@@ -1,0 +1,26 @@
+def inv(s):
+    origin = s
+    length = len(s)
+    new = ''
+    for i in range(0,len(s)):
+        new += origin[length-1-i]
+    return new
+
+while True:
+    try:
+        inStr = raw_input().strip()
+        n = int(input())
+        tmp = ''
+        new = inStr
+        for i in range(0,n):
+            length = len(new)
+            p,l = [int(j) for j in raw_input().strip().split(' ')]
+            if l>=length-p:
+               tmp = new+inv(new[p:])
+            else:
+                tmp=new[0:p+l]+inv(new[p:p+l])+new[p+l:]
+            new=tmp
+1
+  print new
+    except EOFError:
+        break
