@@ -1,0 +1,33 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext())
+        {
+        	int n = sc.nextInt();
+        	int m = sc.nextInt();
+            HashSet<Integer> a = new HashSet<Integer>();
+            for(int i=0;i<n+m;i++)
+            {
+            	a.add(sc.nextInt());
+            }
+            int[] result = new int[a.size()];
+            //System.out.println(a.size());
+            Iterator<Integer> it = a.iterator();
+            int count = 0;
+            while(it.hasNext())
+            {
+            	Integer tmp = it.next();
+            	result[count++] = tmp;
+            }
+            
+            Arrays.sort(result);
+            for(int i=0;i<count-1;i++)
+            {
+            	 System.out.print(result[i]+" ");
+            }
+            System.out.println(result[count-1]);
+        }
+        sc.close();
+    }
+}

@@ -5,30 +5,50 @@ public class Main{
         while(sc.hasNext())
         {
         	int n = sc.nextInt();
-        	int s = sc.nextInt();
-        	int l = sc.nextInt();
-        	
-        	int count = 0;
-        	for(;s*count+count-1<=l;count++);
-        	count --;
-        	if(count%13==0)
+        	if(n<3)
         	{
-        		count = count -1 ;
+        		System.out.println(1+"/"+1);
+        		continue;
         	}
-        	//System.out.println(count);
-        	
-        	int tCount = n%count==0?(n/count):(n/count + 1);
-        	//System.out.println(tCount);
-        	if( n<=count && n%13==0 )
-        	{ 
-        		tCount++;
+        	int num = n - 2;
+        	int count = 0;
+        	for(int i=2;i< n;i++)
+        	{
+        		count += countNum(n,i);
         	}
-        	if( n%count!=0 && n%count%13==0 && (count-1)%13==0 )
-			{
-        		tCount++;
-			}
-        	System.out.println(tCount);
+        	int min = Math.max(num, count);
+        	for(int i=2;i<=min ;)
+        	{
+        		if(count%i==0 && num%i==0)
+        		{
+        			count = count/i;
+        			num = num/i;
+        			min = Math.max(num, count);
+        			i = 2;
+        		}else
+        		{
+        			i++;
+        		}
+        	}
+
+        	System.out.println(count+"/"+num);
+        		
         }
         sc.close();
+    }
+    
+    public static int countNum(int a,int index)
+    {
+    	int count = 0;
+    	while(a>=index)
+    	{
+    		int tmp = a%index;
+    		count = count + tmp;
+    		a = a/index;
+    		//System.out.print(tmp+" ");
+    	}
+    	//System.out.println(a);
+    	count = count+a;
+    	return count;
     }
 }
